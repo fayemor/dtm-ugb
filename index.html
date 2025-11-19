@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dahira Touba Médecine — Application</title>
+
+    <!-- Tailwind utilities (small helpers) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- SheetJS for XLSX export (optional) -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+</head>
+
+<body class="theme-bg text-snow">
+
+    <!-- NAVBAR (identique partout) -->
+    <header class="topbar">
+        <div class="container flex items-center justify-between">
+            <div class="brand flex items-center gap-3">
+                <img src="logo-dtm.png" class="logo small" alt="logo Dahira" />
+                <div>
+                    <div class="brand-title">Dahira Touba Médecine</div>
+                    <div class="brand-sub">Université Gaston Berger de Saint-Louis</div>
+                </div>
+            </div>
+
+            <nav class="nav">
+                <a href="home.html" class="navBtn">Retour</a>
+                <button class="navBtn" id="btnProfile">Mon Profil</button>
+                <button class="navBtn" id="btnCreateAccount">Créer un compte</button>
+                <button class="navBtn" data-target="adminSection">Admin</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mt-10 pb-12">
+        <!-- LOGIN SECTION -->
+        <section id="loginSection" class="pageSection card">
+            <h2 class="h2">Connexion</h2>
+            <div class="grid-2 mt-4">
+                <div>
+                    <label class="field-label">Téléphone ou Email</label>
+                    <input id="loginUser" class="input" placeholder="77xxxxxxx ou email@exemple.com" />
+                </div>
+                <div>
+                    <label class="field-label">Mot de passe</label>
+                    <input id="loginPass" type="password" class="input" placeholder="Mot de passe" />
+                </div>
+            </div>
+
+            <div class="mt-4 flex gap-3">
+                <button id="btnLogin" class="btn btn-primary">Se connecter</button>
+                <button id="btnLogout" class="btn btn-ghost hidden">Se déconnecter</button>
+            </div>
+
+            <p class="muted mt-3 small">Pas de compte ? <button id="gotoSignup" class="btn btn-ghost">Créer un
+                    compte</button></p>
+        </section>
+
+        <!-- SIGNUP FULL -->
+        <section id="signupSection" class="pageSection card hidden">
+            <h2 class="h2">Formulaire d'inscription complet</h2>
+            <div class="small muted mt-1">Prochain matricule : <span id="nextMatPreview"></span></div>
+
+            <form id="regForm" class="mt-4 space-y-4">
+                <!-- 1. Informations personnelles -->
+                <fieldset class="fieldset">
+                    <legend>Informations personnelles</legend>
+                    <div class="grid-2">
+                        <div>
+                            <label class="field-label">Nom *</label>
+                            <input id="nom" class="input" required />
+                        </div>
+                        <div>
+                            <label class="field-label">Prénom *</label>
+                            <input id="prenom" class="input" required />
+                        </div>
+                    </div>
+
+                    <div class="grid-2 mt-2">
+                        <div>
+                            <label class="field-label">Date de naissance *</label>
+                            <input id="dob" type="date" class="input" required />
+                        </div>
+                        <div>
+                            <label class="field-label">Lieu de naissance *</label>
+                            <input id="lieu_naiss" class="input" required />
+                        </div>
+                    </div>
+
+                    <div class="grid-2 mt-2">
+                        <div>
+                            <label class="field-label">Sexe *</label>
+                            <select id="sexe" class="input" required>
+                                <option value="">Sélectionner</option>
+                                <option>Homme</option>
+                                <option>Femme</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="field-label">Nationalité *</label>
+                            <input id="nationalite" class="input" required />
+                        </div>
+                    </div>
+
+                    <div class="grid-2 mt-2">
+                        <div>
+                            <label class="field-label">Téléphone (WhatsApp) *</label>
+                            <input id="tel" class="input" required />
+                        </div>
+                        <div>
+                            <label class="field-label">Email *</label>
+                            <input id="email" type="email" class="input" required />
+                        </div>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class="field-label">Adresse complète *</label>
+                        <input id="adresse" class="input" required />
+                    </div>
+                </fieldset>
+
+                <!-- 2. Informations religieuses -->
+                <fieldset class="fieldset">
+                    <legend>Informations religieuses</legend>
+                    <div class="grid-2">
+                        <div>
+                            <label class="field-label">Statut dans le dahira *</label>
+                            <select id="statut_dahira" class="input" required>
+                                <option value="">Sélectionner</option>
+                                <option>Membre interne</option>
+                                <option>Membre externe</option>
+                                <option>Sympathisant</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="field-label">Photo (pour la carte)</label>
+                            <input id="photo" type="file" accept="image/*" class="input" />
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- 3. Académiques / Pro -->
+                <fieldset class="fieldset">
+                    <legend>Informations académiques / professionnelles</legend>
+                    <div class="grid-2">
+                        <div>
+                            <label class="field-label">Statut *</label>
+                            <select id="statut" class="input" required>
+                                <option value="">Sélectionner</option>
+                                <option>Étudiant en médecine</option>
+                                <option>Médecin</option>
+                                <option>Étudiant autre filière santé</option>
+                                <option>Professionnel externe</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="field-label">Université / Institution *</label>
+                            <input id="universite" class="input" required />
+                        </div>
+                    </div>
+
+                    <div class="grid-2 mt-2">
+                        <div>
+                            <label class="field-label">Niveau d'étude *</label>
+                            <input id="niveau" class="input" required
+                                placeholder="ex: L1 Médecine, DCEM, Internat..." />
+                        </div>
+                        <div>
+                            <label class="field-label">Spécialité médicale (si médecin) *</label>
+                            <input id="specialite" class="input" required />
+                        </div>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class="field-label">Année d'obtention du diplôme *</label>
+                        <input id="annee_diplome" type="number" min="1900" max="2100" class="input" required />
+                    </div>
+                </fieldset>
+
+                <!-- 4. Engagement -->
+                <fieldset class="fieldset">
+                    <legend>Engagement dans le Dahira</legend>
+                    <div class="grid-2">
+                        <div>
+                            <label class="field-label">Disponibilités *</label>
+                            <input id="disponibilites" class="input" required placeholder="ex: weekends, soirs..." />
+                        </div>
+                        <div>
+                            <label class="field-label">Talents / Compétences *</label>
+                            <input id="competences" class="input" required
+                                placeholder="ex: organisation, informatique..." />
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <label class="field-label">Domaine où il/elle veut aider *</label>
+                        <input id="domaine" class="input" required
+                            placeholder="ex: santé, communication, logistique..." />
+                    </div>
+                </fieldset>
+
+                <!-- 5. Administratif (REMOVED per your request) -->
+
+                <!-- 6. Consentement & Signature -->
+                <fieldset class="fieldset">
+                    <legend>Consentement & signature</legend>
+                    <label class="flex items-center gap-2"><input id="consent" type="checkbox" required /> J’autorise
+                        que mes informations soient utilisées pour les activités du Dahira Touba Médecine.</label>
+                    <div class="mt-2">
+                        <label class="field-label">Signature (Nom + Date) *</label>
+                        <input id="signature" class="input" required placeholder="Ex: Mor Faye - 2025-06-01" />
+                    </div>
+                </fieldset>
+
+                <!-- 7. Compte utilisateur -->
+                <fieldset class="fieldset">
+                    <legend>Compte</legend>
+                    <div class="grid-2">
+                        <div>
+                            <label class="field-label">Mot de passe *</label>
+                            <input id="password" type="password" class="input" required />
+                        </div>
+                        <div>
+                            <label class="field-label">Confirmer mot de passe *</label>
+                            <input id="password2" type="password" class="input" required />
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="flex gap-3">
+                    <button type="submit" class="btn btn-primary">S'inscrire & créer compte</button>
+                    <button id="resetSeq" type="button" class="btn btn-ghost">Réinitialiser séquence</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- USER PROFILE (editable except matricule) -->
+        <section id="userSection" class="pageSection card hidden">
+            <div class="flex justify-between items-start">
+                <h2 class="h2">Mon profil</h2>
+                <div class="small muted">Matricule: <span id="userMat" class="badge-mat"></span></div>
+            </div>
+
+            <div id="userDetails" class="mt-4 grid-2"></div>
+
+            <div class="mt-4 flex gap-3">
+                <button id="userSaveBtn" class="btn btn-primary">Sauvegarder</button>
+                <button id="changePassBtn" class="btn btn-ghost">Changer mot de passe</button>
+                <button id="downloadCardBtn" class="btn btn-primary w-full">Télécharger ma carte</button>
+
+            </div>
+
+            <div id="badgeWrap" class="mt-6"></div>
+        </section>
+
+        <!-- ADMIN -->
+        <section id="adminSection" class="pageSection card hidden">
+            <h2 class="h2">Panel Admin</h2>
+            <div class="mt-4 flex gap-3">
+                <button id="adminLogin" class="btn btn-primary">Connexion Admin</button>
+                <button id="adminLogout" class="btn btn-ghost hidden">Déconnexion Admin</button>
+                <button id="btnShowAll" class="btn btn-ghost hidden">Voir inscriptions</button>
+                <button id="exportCsv" class="btn btn-ghost hidden">Exporter CSV</button>
+                <button id="exportXlsx" class="btn btn-ghost hidden">Exporter XLSX</button>
+                <button id="clearAll" class="btn btn-danger hidden">Tout supprimer</button>
+            </div>
+
+            <div id="tableWrap" class="table-wrap hidden mt-4">
+                <table id="adminTable"></table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="container footer mt-8">
+        <div class="small muted">Besoin d'aide ? Contactez l'administrateur.</div>
+    </footer>
+
+    <!-- ABOUT MODAL (reusable) -->
+    <div id="aboutModal" class="modal hidden">
+        <div class="modal-content card">
+            <h2 class="h2 mb-3">À propos du Dahira Touba Médecine</h2>
+            <p class="muted">
+                Le Dahira Touba Médecine (DTM) est une structure regroupant les étudiants,
+                médecins et professionnels de la santé évoluant dans l’esprit du Mouridisme.
+                Fondé avec l’objectif de promouvoir la science, le service communautaire et
+                l’excellence académique, le Dahira soutient ses membres dans leur cheminement
+                religieux, social et professionnel. Il organise des actions médicales,
+                des formations et des activités sociales pour la communauté.
+            </p>
+            <div class="mt-4 flex gap-3">
+                <button id="closeAbout" class="btn btn-primary">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

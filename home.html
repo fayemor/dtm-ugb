@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dahira Touba Médecine — Accueil</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="theme-bg text-snow">
+
+    <!-- NAVBAR (identique partout) -->
+    <header class="topbar">
+        <div class="container flex items-center justify-between">
+            <div class="brand flex items-center gap-3">
+                <img src="logo-dtm.png" class="logo" />
+                <div>
+                    <div class="brand-title">Dahira Touba Médecine</div>
+                    <div class="brand-sub">Université Gaston Berger de Saint-Louis</div>
+                </div>
+            </div>
+
+            <nav class="nav hidden md:flex items-center gap-4">
+                <button id="openAbout" class="nav-link">À propos</button>
+                <a href="index.html" class="nav-link">Connexion</a>
+                <a href="index.html#signupSection" class="nav-cta">Créer un compte</a>
+            </nav>
+
+            <button id="mobileToggle" class="mobile-toggle md:hidden text-2xl">☰</button>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="mobile-menu hidden">
+        <button id="openAboutMobile" class="mobile-link block">À propos</button>
+        <a href="index.html" class="mobile-link block">Connexion</a>
+        <a href="index.html#signupSection" class="mobile-link block">Créer un compte</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="container hero py-24">
+        <div class="hero-left">
+            <h1 class="hero-title">
+                Bienvenue au<br>
+                <span class="accent">Dahira Touba Médecine</span>
+            </h1>
+            <p class="hero-sub mt-4">
+                Une plateforme moderne, sécurisée et fluide pour gérer les inscriptions,
+                membres et activités du Dahira.
+            </p>
+
+            <div class="hero-ctas mt-8">
+                <a href="index.html" class="btn btn-primary">Se connecter</a>
+                <a href="index.html#signupSection" class="btn btn-ghost">Créer un compte</a>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- MODAL A PROPOS -->
+    <div id="aboutModal" class="modal hidden">
+        <div class="modal-content card">
+            <h2 class="h2 mb-4">À propos du Dahira Touba Médecine</h2>
+            <p class="muted">
+                Le Dahira Touba Médecine (DTM) est une structure regroupant les étudiants,
+                médecins et professionnels de la santé évoluant dans l’esprit du Mouridisme.
+                Fondé avec l’objectif de promouvoir la science, le service communautaire et
+                l’excellence académique, le Dahira soutient ses membres dans leur cheminement
+                religieux, social et professionnel.
+                <br><br>
+                Le DTM participe activement aux actions sociales, aux journées médicales
+                gratuites, aux formations sanitaires, à l’accueil des nouveaux étudiants
+                et aux évènements religieux.
+                <br><br>
+                Fidèle aux enseignements de Cheikh Ahmadou Bamba, il place au cœur de sa
+                mission : le travail, la discipline, l'entraide, et la recherche du savoir.
+                <br><br>
+                Le Dahira continue de grandir et de rassembler des milliers de membres unis
+                autour d’un idéal : “Khadimou Rassoul, rek laa bok.”
+            </p>
+
+            <button id="closeAbout" class="btn btn-primary mt-6 w-full">Fermer</button>
+        </div>
+    </div>
+
+    <footer class="container footer py-8">
+        <div>© 2025 Dahira Touba Médecine</div>
+        <div class="small muted">Tous droits réservés</div>
+    </footer>
+
+    <script>
+        /* Mobile menu */
+        mobileToggle.onclick = () => mobileMenu.classList.toggle("hidden");
+        document.querySelectorAll(".mobile-link")
+            .forEach(a => a.onclick = () => mobileMenu.classList.add("hidden"));
+
+        /* Modal À propos */
+        openAbout.onclick = () => aboutModal.classList.remove("hidden");
+        openAboutMobile.onclick = () => {mobileMenu.classList.add("hidden"); aboutModal.classList.remove("hidden");}
+        closeAbout.onclick = () => aboutModal.classList.add("hidden");
+    </script>
+
+</body>
+
+</html>

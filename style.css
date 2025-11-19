@@ -1,0 +1,412 @@
+/* ==========================================================
+   THEME OFFICIEL — DAHIRA TOUBA MEDECINE
+   DARK BLUE PREMIUM • GLASS • MODERNE • MOBILE-FRIENDLY
+   ========================================================== */
+
+:root {
+    --bg-900: #020a1c;
+    --bg-800: #041733;
+    --bg-700: #062046;
+    --card: #082b55;
+    --glass: rgba(255, 255, 255, 0.04);
+
+    --snow: #e7f3ff;
+    --muted: #9fb6d6;
+    --accent: #00c2ff;
+    --accent2: #3b82f6;
+}
+
+/* GLOBAL */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(180deg, var(--bg-900), var(--bg-700) 120%);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    color: var(--snow);
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* ============================
+   NAVBAR
+   ============================ */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    padding: 12px 0;
+    background: rgba(0, 0, 0, 0.22);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    object-fit: cover;
+}
+
+.logo.small {
+    width: 48px;
+    height: 48px;
+}
+
+.brand-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--accent);
+}
+
+.brand-sub {
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+.nav {
+    display: flex;
+    gap: 12px;
+}
+
+.navBtn {
+    padding: 9px 14px;
+    background: transparent;
+    border-radius: 10px;
+    color: var(--muted);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+}
+
+.navBtn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--snow);
+}
+
+/* ============================
+   HERO
+   ============================ */
+.hero {
+    display: flex;
+    gap: 26px;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 40px;
+}
+
+.hero-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.accent {
+    color: var(--accent);
+}
+
+.hero-sub {
+    color: var(--muted);
+    max-width: 480px;
+}
+
+.hero-card {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+/* ============================
+   BUTTONS
+   ============================ */
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    color: white;
+    box-shadow: 0 12px 30px rgba(0, 194, 255, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-ghost:hover {
+    color: var(--snow);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.btn-danger {
+    background: linear-gradient(90deg, #df1f1f, #ff4747);
+    color: white;
+    box-shadow: 0 5px 18px rgba(255, 50, 50, 0.4);
+}
+
+/* ============================
+   CARDS & FIELDSETS
+   ============================ */
+.card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+    transition: 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.fieldset {
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.fieldset legend {
+    font-weight: 700;
+    color: var(--accent2);
+}
+
+/* ============================
+   INPUTS
+   ============================ */
+.input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    color: var(--snow);
+    outline: none;
+}
+
+.input::placeholder {
+    color: rgba(230, 240, 255, 0.4);
+}
+
+.field-label {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+/* ============================
+   GRID SYSTEM
+   ============================ */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 860px) {
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        flex-direction: column;
+    }
+}
+
+/* ============================
+   TABLE ADMIN
+   ============================ */
+.table-wrap {
+    overflow: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#adminTable {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1200px;
+}
+
+#adminTable th {
+    background: linear-gradient(90deg, #0d2a52, #06396d);
+    padding: 14px;
+    color: white;
+    text-align: left;
+    font-size: 0.9rem;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+#adminTable td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--snow);
+}
+
+/* ============================
+   BADGE
+   ============================ */
+.badge-preview {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 14px;
+    border-radius: 14px;
+}
+
+.badge-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+}
+
+.badge-mat {
+    font-family: monospace;
+    color: var(--accent2);
+}
+
+/* ============================
+   MODAL
+   ============================ */
+.modal {
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 750px;
+    border-radius: 18px;
+}
+
+/* ============================
+   MOBILE MENU
+   ============================ */
+.mobile-toggle {
+    border: none;
+    background: transparent;
+}
+
+.mobile-menu {
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+    padding: 20px;
+}
+
+.mobile-link {
+    padding: 10px 4px;
+    font-size: 1rem;
+    color: var(--snow);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ============================
+   FOOTER
+   ============================ */
+.footer {
+    text-align: center;
+    padding-bottom: 40px;
+    margin-top: 30px;
+    color: var(--muted);
+}
+
+/* ============================
+   ANIMATIONS
+   ============================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pageSection {
+    animation: fadeIn .45s ease both;
+}
+
+
+/* Center hero content after removing badge */
+.hero {
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.hero-left {
+    margin: 0 auto;
+}
+
+.hero-ctas {
+    justify-content: center;
+}
+
+/* Background image for the landing page hero */
+.hero {
+    background-image: url("touba.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dark-blue overlay */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            rgba(0, 8, 20, 0.75),
+            rgba(0, 12, 30, 0.85));
+    backdrop-filter: blur(2px);
+}
+
+/* Make sure the content stays visible above overlay */
+.hero>* {
+    position: relative;
+    z-index: 10;
+}
